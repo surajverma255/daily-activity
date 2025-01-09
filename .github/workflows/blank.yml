@@ -14,12 +14,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run Daily Activity Script
+        env:
+          PAT: ${{ secrets.PAT }}
         run: |
           echo "$(date)" > activity.log # Log the current date and time
           git config --global user.name "surajverma255"
           git config --global user.email "surajverma255@gmail.com"
           git add .
           git commit -m "Automated daily commit"
-          git push https://<PAT>@github.com/surajverma255/daily-activity.git
-        env:
-          PAT: ${{ secrets.PAT }}
+          git push https://${{ secrets.PAT }}@github.com/surajverma255/daily-activity.git
